@@ -9,6 +9,8 @@ build
 *.class
 *.project
 *.classpath
+*.interp
+*.tokens
 
 .vscode/
 .idea/

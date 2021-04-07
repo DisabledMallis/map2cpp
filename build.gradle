@@ -9,11 +9,23 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+	// Antlr plugin for mapping parsing & lexing
+	id 'antlr'
 }
 
 repositories {
     // Use JCenter for resolving dependencies.
     jcenter()
+	// Also maven you fucking donkey. Thanks gradle
+	mavenCentral()
+}
+
+sourceCompatibility = 11
+
+generateGrammarSource {
+    maxHeapSize = "64m"
+    arguments += ["-visitor", "-long-messages"]
+    outputDirectory = file("src/main/java/io/github/disabledmallis/map2cpp/antlr")
 }
 
 dependencies {
@@ -22,6 +34,9 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
+
+	// Antlr4 bby
+	antlr group: 'org.antlr', name: 'antlr4', version: '4.9.1'
 }
 
 application {
