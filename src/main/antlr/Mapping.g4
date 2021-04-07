@@ -8,7 +8,10 @@ fieldMap
 	: 'FIELD' unmappedName mappedName dataType
 	;
 methodMap
-	: 'METHOD' unmappedName mappedName dataType
+	: 'METHOD' unmappedName mappedName methodParams dataType
+	;
+methodParams
+	: '(' dataType* (';' dataType)* ')'
 	;
 
 dataType : name;
@@ -17,4 +20,5 @@ mappedName : name;
 
 name : .+?;
 
-WHITESPACE : [ \t\r\n] -> skip;
+TERMINATOR : ' ' -> skip;
+WHITESPACE : [\t\r\n] -> skip;

@@ -51,6 +51,18 @@ public class MappingBaseListener implements MappingListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMethodParams(MappingParser.MethodParamsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMethodParams(MappingParser.MethodParamsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDataType(MappingParser.DataTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}

@@ -28,6 +28,12 @@ public interface MappingVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMethodMap(MappingParser.MethodMapContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MappingParser#methodParams}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMethodParams(MappingParser.MethodParamsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MappingParser#dataType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

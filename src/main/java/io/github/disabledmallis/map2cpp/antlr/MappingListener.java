@@ -37,6 +37,16 @@ public interface MappingListener extends ParseTreeListener {
 	 */
 	void exitMethodMap(MappingParser.MethodMapContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MappingParser#methodParams}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodParams(MappingParser.MethodParamsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MappingParser#methodParams}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodParams(MappingParser.MethodParamsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MappingParser#dataType}.
 	 * @param ctx the parse tree
 	 */
