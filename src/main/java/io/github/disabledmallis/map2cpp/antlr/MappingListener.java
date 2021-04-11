@@ -1,4 +1,7 @@
 // Generated from Mapping.g4 by ANTLR 4.9.1
+
+package io.github.disabledmallis.map2cpp.antlr;
+
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -6,6 +9,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  * {@link MappingParser}.
  */
 public interface MappingListener extends ParseTreeListener {
+	/**
+	 * Enter a parse tree produced by {@link MappingParser#mappingFile}.
+	 * @param ctx the parse tree
+	 */
+	void enterMappingFile(MappingParser.MappingFileContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MappingParser#mappingFile}.
+	 * @param ctx the parse tree
+	 */
+	void exitMappingFile(MappingParser.MappingFileContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MappingParser#classMap}.
 	 * @param ctx the parse tree

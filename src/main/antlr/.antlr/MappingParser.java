@@ -1,4 +1,7 @@
 // Generated from b:\GitHub\map2cpp\src\main\antlr\Mapping.g4 by ANTLR 4.8
+
+package io.github.disabledmallis.map2cpp.antlr;
+
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -16,27 +19,27 @@ public class MappingParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, TERMINATOR=7, WHITESPACE=8;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7;
 	public static final int
-		RULE_classMap = 0, RULE_fieldMap = 1, RULE_methodMap = 2, RULE_methodParams = 3, 
-		RULE_dataType = 4, RULE_unmappedName = 5, RULE_mappedName = 6, RULE_name = 7;
+		RULE_mappingFile = 0, RULE_classMap = 1, RULE_fieldMap = 2, RULE_methodMap = 3, 
+		RULE_methodParams = 4, RULE_dataType = 5, RULE_unmappedName = 6, RULE_mappedName = 7, 
+		RULE_name = 8;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"classMap", "fieldMap", "methodMap", "methodParams", "dataType", "unmappedName", 
-			"mappedName", "name"
+			"mappingFile", "classMap", "fieldMap", "methodMap", "methodParams", "dataType", 
+			"unmappedName", "mappedName", "name"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'CLASS'", "'FIELD'", "'METHOD'", "'('", "';'", "')'", "' '"
+			null, "'CLASS '", "' '", "'FIELD '", "'METHOD '", "'('", "';'", "')'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, "TERMINATOR", "WHITESPACE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -90,6 +93,93 @@ public class MappingParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
+	public static class MappingFileContext extends ParserRuleContext {
+		public List<ClassMapContext> classMap() {
+			return getRuleContexts(ClassMapContext.class);
+		}
+		public ClassMapContext classMap(int i) {
+			return getRuleContext(ClassMapContext.class,i);
+		}
+		public List<FieldMapContext> fieldMap() {
+			return getRuleContexts(FieldMapContext.class);
+		}
+		public FieldMapContext fieldMap(int i) {
+			return getRuleContext(FieldMapContext.class,i);
+		}
+		public List<MethodMapContext> methodMap() {
+			return getRuleContexts(MethodMapContext.class);
+		}
+		public MethodMapContext methodMap(int i) {
+			return getRuleContext(MethodMapContext.class,i);
+		}
+		public MappingFileContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_mappingFile; }
+	}
+
+	public final MappingFileContext mappingFile() throws RecognitionException {
+		MappingFileContext _localctx = new MappingFileContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_mappingFile);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(21);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==T__0) {
+				{
+				{
+				setState(18);
+				classMap();
+				}
+				}
+				setState(23);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(27);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==T__2) {
+				{
+				{
+				setState(24);
+				fieldMap();
+				}
+				}
+				setState(29);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(33);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==T__3) {
+				{
+				{
+				setState(30);
+				methodMap();
+				}
+				}
+				setState(35);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static class ClassMapContext extends ParserRuleContext {
 		public UnmappedNameContext unmappedName() {
 			return getRuleContext(UnmappedNameContext.class,0);
@@ -105,15 +195,17 @@ public class MappingParser extends Parser {
 
 	public final ClassMapContext classMap() throws RecognitionException {
 		ClassMapContext _localctx = new ClassMapContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_classMap);
+		enterRule(_localctx, 2, RULE_classMap);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(16);
+			setState(36);
 			match(T__0);
-			setState(17);
+			setState(37);
 			unmappedName();
-			setState(18);
+			setState(38);
+			match(T__1);
+			setState(39);
 			mappedName();
 			}
 		}
@@ -146,17 +238,21 @@ public class MappingParser extends Parser {
 
 	public final FieldMapContext fieldMap() throws RecognitionException {
 		FieldMapContext _localctx = new FieldMapContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_fieldMap);
+		enterRule(_localctx, 4, RULE_fieldMap);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(20);
-			match(T__1);
-			setState(21);
+			setState(41);
+			match(T__2);
+			setState(42);
 			unmappedName();
-			setState(22);
+			setState(43);
+			match(T__1);
+			setState(44);
 			mappedName();
-			setState(23);
+			setState(45);
+			match(T__1);
+			setState(46);
 			dataType();
 			}
 		}
@@ -192,19 +288,25 @@ public class MappingParser extends Parser {
 
 	public final MethodMapContext methodMap() throws RecognitionException {
 		MethodMapContext _localctx = new MethodMapContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_methodMap);
+		enterRule(_localctx, 6, RULE_methodMap);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(25);
-			match(T__2);
-			setState(26);
+			setState(48);
+			match(T__3);
+			setState(49);
 			unmappedName();
-			setState(27);
+			setState(50);
+			match(T__1);
+			setState(51);
 			mappedName();
-			setState(28);
+			setState(52);
+			match(T__1);
+			setState(53);
 			methodParams();
-			setState(29);
+			setState(54);
+			match(T__1);
+			setState(55);
 			dataType();
 			}
 		}
@@ -234,48 +336,48 @@ public class MappingParser extends Parser {
 
 	public final MethodParamsContext methodParams() throws RecognitionException {
 		MethodParamsContext _localctx = new MethodParamsContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_methodParams);
+		enterRule(_localctx, 8, RULE_methodParams);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(31);
-			match(T__3);
-			setState(35);
+			setState(57);
+			match(T__4);
+			setState(61);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(32);
+					setState(58);
 					dataType();
 					}
 					} 
 				}
-				setState(37);
+				setState(63);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
-			setState(42);
+			setState(68);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__4) {
+			while (_la==T__5) {
 				{
 				{
-				setState(38);
-				match(T__4);
-				setState(39);
+				setState(64);
+				match(T__5);
+				setState(65);
 				dataType();
 				}
 				}
-				setState(44);
+				setState(70);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(45);
-			match(T__5);
+			setState(71);
+			match(T__6);
 			}
 		}
 		catch (RecognitionException re) {
@@ -301,11 +403,11 @@ public class MappingParser extends Parser {
 
 	public final DataTypeContext dataType() throws RecognitionException {
 		DataTypeContext _localctx = new DataTypeContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_dataType);
+		enterRule(_localctx, 10, RULE_dataType);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(47);
+			setState(73);
 			name();
 			}
 		}
@@ -332,11 +434,11 @@ public class MappingParser extends Parser {
 
 	public final UnmappedNameContext unmappedName() throws RecognitionException {
 		UnmappedNameContext _localctx = new UnmappedNameContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_unmappedName);
+		enterRule(_localctx, 12, RULE_unmappedName);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(49);
+			setState(75);
 			name();
 			}
 		}
@@ -363,11 +465,11 @@ public class MappingParser extends Parser {
 
 	public final MappedNameContext mappedName() throws RecognitionException {
 		MappedNameContext _localctx = new MappedNameContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_mappedName);
+		enterRule(_localctx, 14, RULE_mappedName);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
+			setState(77);
 			name();
 			}
 		}
@@ -391,12 +493,12 @@ public class MappingParser extends Parser {
 
 	public final NameContext name() throws RecognitionException {
 		NameContext _localctx = new NameContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_name);
+		enterRule(_localctx, 16, RULE_name);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(54); 
+			setState(80); 
 			_errHandler.sync(this);
 			_alt = 1+1;
 			do {
@@ -404,7 +506,7 @@ public class MappingParser extends Parser {
 				case 1+1:
 					{
 					{
-					setState(53);
+					setState(79);
 					matchWildcard();
 					}
 					}
@@ -412,9 +514,9 @@ public class MappingParser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(56); 
+				setState(82); 
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			} while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 			}
 		}
@@ -430,21 +532,27 @@ public class MappingParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n=\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\3\2\3\2\3\2\3\2\3\3"+
-		"\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\5\3\5\7\5$\n\5\f\5\16\5\'\13"+
-		"\5\3\5\3\5\7\5+\n\5\f\5\16\5.\13\5\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3\b\3\t"+
-		"\6\t9\n\t\r\t\16\t:\3\t\3:\2\n\2\4\6\b\n\f\16\20\2\2\2\67\2\22\3\2\2\2"+
-		"\4\26\3\2\2\2\6\33\3\2\2\2\b!\3\2\2\2\n\61\3\2\2\2\f\63\3\2\2\2\16\65"+
-		"\3\2\2\2\208\3\2\2\2\22\23\7\3\2\2\23\24\5\f\7\2\24\25\5\16\b\2\25\3\3"+
-		"\2\2\2\26\27\7\4\2\2\27\30\5\f\7\2\30\31\5\16\b\2\31\32\5\n\6\2\32\5\3"+
-		"\2\2\2\33\34\7\5\2\2\34\35\5\f\7\2\35\36\5\16\b\2\36\37\5\b\5\2\37 \5"+
-		"\n\6\2 \7\3\2\2\2!%\7\6\2\2\"$\5\n\6\2#\"\3\2\2\2$\'\3\2\2\2%#\3\2\2\2"+
-		"%&\3\2\2\2&,\3\2\2\2\'%\3\2\2\2()\7\7\2\2)+\5\n\6\2*(\3\2\2\2+.\3\2\2"+
-		"\2,*\3\2\2\2,-\3\2\2\2-/\3\2\2\2.,\3\2\2\2/\60\7\b\2\2\60\t\3\2\2\2\61"+
-		"\62\5\20\t\2\62\13\3\2\2\2\63\64\5\20\t\2\64\r\3\2\2\2\65\66\5\20\t\2"+
-		"\66\17\3\2\2\2\679\13\2\2\28\67\3\2\2\29:\3\2\2\2:;\3\2\2\2:8\3\2\2\2"+
-		";\21\3\2\2\2\5%,:";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\tW\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\7\2\26"+
+		"\n\2\f\2\16\2\31\13\2\3\2\7\2\34\n\2\f\2\16\2\37\13\2\3\2\7\2\"\n\2\f"+
+		"\2\16\2%\13\2\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\5\3\5"+
+		"\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\6\3\6\7\6>\n\6\f\6\16\6A\13\6\3\6\3\6\7"+
+		"\6E\n\6\f\6\16\6H\13\6\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t\3\n\6\nS\n\n\r"+
+		"\n\16\nT\3\n\3T\2\13\2\4\6\b\n\f\16\20\22\2\2\2S\2\27\3\2\2\2\4&\3\2\2"+
+		"\2\6+\3\2\2\2\b\62\3\2\2\2\n;\3\2\2\2\fK\3\2\2\2\16M\3\2\2\2\20O\3\2\2"+
+		"\2\22R\3\2\2\2\24\26\5\4\3\2\25\24\3\2\2\2\26\31\3\2\2\2\27\25\3\2\2\2"+
+		"\27\30\3\2\2\2\30\35\3\2\2\2\31\27\3\2\2\2\32\34\5\6\4\2\33\32\3\2\2\2"+
+		"\34\37\3\2\2\2\35\33\3\2\2\2\35\36\3\2\2\2\36#\3\2\2\2\37\35\3\2\2\2 "+
+		"\"\5\b\5\2! \3\2\2\2\"%\3\2\2\2#!\3\2\2\2#$\3\2\2\2$\3\3\2\2\2%#\3\2\2"+
+		"\2&\'\7\3\2\2\'(\5\16\b\2()\7\4\2\2)*\5\20\t\2*\5\3\2\2\2+,\7\5\2\2,-"+
+		"\5\16\b\2-.\7\4\2\2./\5\20\t\2/\60\7\4\2\2\60\61\5\f\7\2\61\7\3\2\2\2"+
+		"\62\63\7\6\2\2\63\64\5\16\b\2\64\65\7\4\2\2\65\66\5\20\t\2\66\67\7\4\2"+
+		"\2\678\5\n\6\289\7\4\2\29:\5\f\7\2:\t\3\2\2\2;?\7\7\2\2<>\5\f\7\2=<\3"+
+		"\2\2\2>A\3\2\2\2?=\3\2\2\2?@\3\2\2\2@F\3\2\2\2A?\3\2\2\2BC\7\b\2\2CE\5"+
+		"\f\7\2DB\3\2\2\2EH\3\2\2\2FD\3\2\2\2FG\3\2\2\2GI\3\2\2\2HF\3\2\2\2IJ\7"+
+		"\t\2\2J\13\3\2\2\2KL\5\22\n\2L\r\3\2\2\2MN\5\22\n\2N\17\3\2\2\2OP\5\22"+
+		"\n\2P\21\3\2\2\2QS\13\2\2\2RQ\3\2\2\2ST\3\2\2\2TU\3\2\2\2TR\3\2\2\2U\23"+
+		"\3\2\2\2\b\27\35#?FT";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

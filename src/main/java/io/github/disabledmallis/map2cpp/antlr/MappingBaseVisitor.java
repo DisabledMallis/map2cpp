@@ -1,4 +1,7 @@
 // Generated from Mapping.g4 by ANTLR 4.9.1
+
+package io.github.disabledmallis.map2cpp.antlr;
+
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -10,6 +13,13 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * operations with no return type.
  */
 public class MappingBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements MappingVisitor<T> {
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMappingFile(MappingParser.MappingFileContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

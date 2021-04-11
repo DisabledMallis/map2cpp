@@ -1,4 +1,7 @@
 // Generated from Mapping.g4 by ANTLR 4.9.1
+
+package io.github.disabledmallis.map2cpp.antlr;
+
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -9,6 +12,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  * operations with no return type.
  */
 public interface MappingVisitor<T> extends ParseTreeVisitor<T> {
+	/**
+	 * Visit a parse tree produced by {@link MappingParser#mappingFile}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMappingFile(MappingParser.MappingFileContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MappingParser#classMap}.
 	 * @param ctx the parse tree

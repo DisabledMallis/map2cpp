@@ -1,14 +1,22 @@
 grammar Mapping;
 
+@header {
+package io.github.disabledmallis.map2cpp.antlr;
+}
+
+
+mappingFile
+	: classMap* fieldMap* methodMap*
+	;
 
 classMap
-	: 'CLASS' unmappedName mappedName
+	: 'CLASS ' unmappedName ' ' mappedName
 	;
 fieldMap
-	: 'FIELD' unmappedName mappedName dataType
+	: 'FIELD ' unmappedName ' ' mappedName ' ' dataType
 	;
 methodMap
-	: 'METHOD' unmappedName mappedName methodParams dataType
+	: 'METHOD ' unmappedName ' ' mappedName ' ' methodParams ' ' dataType
 	;
 methodParams
 	: '(' dataType* (';' dataType)* ')'
@@ -19,6 +27,3 @@ unmappedName : name;
 mappedName : name;
 
 name : .+?;
-
-TERMINATOR : ' ' -> skip;
-WHITESPACE : [\t\r\n] -> skip;

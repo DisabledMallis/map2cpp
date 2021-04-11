@@ -1,5 +1,8 @@
 // Generated from Mapping.g4 by ANTLR 4.9.1
 
+package io.github.disabledmallis.map2cpp.antlr;
+
+
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -10,6 +13,18 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * of the available methods.
  */
 public class MappingBaseListener implements MappingListener {
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMappingFile(MappingParser.MappingFileContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMappingFile(MappingParser.MappingFileContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
