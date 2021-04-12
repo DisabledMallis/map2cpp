@@ -9,8 +9,6 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
-	// Antlr plugin for mapping parsing & lexing
-	id 'antlr'
 }
 
 repositories {
@@ -18,15 +16,14 @@ repositories {
     jcenter()
 	// Also maven you fucking donkey. Thanks gradle
 	mavenCentral()
+	// Modmuss's maven repo
+	maven {
+		name = 'Fabric'
+		url = 'http://maven.modmuss50.me/'
+	}
 }
 
 sourceCompatibility = 11
-
-generateGrammarSource {
-    maxHeapSize = "64m"
-    arguments += ["-visitor", "-long-messages"]
-    outputDirectory = file("src/main/java/io/github/disabledmallis/map2cpp/antlr")
-}
 
 dependencies {
     // Use JUnit test framework.
@@ -35,8 +32,8 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
 
-	// Antlr4 bby
-	antlr group: 'org.antlr', name: 'antlr4', version: '4.9.1'
+	// Fabric tiny mapping parser
+	compile group: 'net.fabricmc', name: 'tiny-mappings-parser', version: '0.3.0+build.17'
 }
 
 application {

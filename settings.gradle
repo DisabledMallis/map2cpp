@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'map2cpp'
-//include('.')
+include('tiny-mappings-parser')
