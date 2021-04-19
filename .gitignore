@@ -12,6 +12,7 @@ build
 *.interp
 *.tokens
 *.mapping
+*.tiny
 
 .vscode/
 .idea/
