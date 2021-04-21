@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import net.fabricmc.mapping.reader.v2.MappingGetter;
-import net.fabricmc.mapping.reader.v2.TinyV2Factory;
 import net.fabricmc.mapping.reader.v2.TinyVisitor;
 import net.fabricmc.mapping.tree.TinyMappingFactory;
 import net.fabricmc.mapping.tree.TinyTree;
