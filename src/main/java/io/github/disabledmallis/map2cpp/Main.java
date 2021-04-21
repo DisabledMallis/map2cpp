@@ -3,6 +3,7 @@ package io.github.disabledmallis.map2cpp;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import net.fabricmc.mapping.reader.v2.MappingGetter;
 import net.fabricmc.mapping.reader.v2.TinyVisitor;
@@ -10,6 +11,9 @@ import net.fabricmc.mapping.tree.TinyMappingFactory;
 import net.fabricmc.mapping.tree.TinyTree;
 
 public class Main {
+
+	static ArrayList<MappedClass> classes = new ArrayList<>();
+
 	static String intermediaryPath = "mappings/intermediary.tiny";
     public static void main(String[] args) throws IOException {
 		for(int i = 0; i < args.length; i++) {
@@ -22,10 +26,9 @@ public class Main {
 		BufferedReader reader = new BufferedReader(new FileReader(intermediaryPath));
 		TinyTree tree = TinyMappingFactory.loadLegacy(reader);
 		tree.getClasses().forEach(c -> {
-			Logger.Log(c.getName("official") + " -> " + c.getRawName("intermediary"));
-			c.getFields().forEach(f -> {
-				Logger.Log(f.getName("official") + " -> " + f.getRawName("intermediary"));
-			});
+			MappedClass mappedClass = new MappedClass("N/A", c.getName("Intermediary"), c.getName("Official"));
+			
+			classes.add(mappedClass);
 		});
     }
 
