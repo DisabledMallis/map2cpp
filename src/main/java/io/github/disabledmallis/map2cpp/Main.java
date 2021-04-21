@@ -23,6 +23,9 @@ public class Main {
 		TinyTree tree = TinyMappingFactory.loadLegacy(reader);
 		tree.getClasses().forEach(c -> {
 			Logger.Log(c.getName("official") + " -> " + c.getRawName("intermediary"));
+			c.getFields().forEach(f -> {
+				Logger.Log(f.getName("official") + " -> " + f.getRawName("intermediary"));
+			});
 		});
     }
 
