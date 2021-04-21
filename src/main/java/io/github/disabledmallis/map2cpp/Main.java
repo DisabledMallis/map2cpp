@@ -3,9 +3,10 @@ package io.github.disabledmallis.map2cpp;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Map;
 
-import net.fabricmc.mapping.tree.ClassDef;
+import net.fabricmc.mapping.reader.v2.MappingGetter;
+import net.fabricmc.mapping.reader.v2.TinyV2Factory;
+import net.fabricmc.mapping.reader.v2.TinyVisitor;
 import net.fabricmc.mapping.tree.TinyMappingFactory;
 import net.fabricmc.mapping.tree.TinyTree;
 
@@ -18,20 +19,25 @@ public class Main {
 				intermediaryPath = args[i+1];
 			}
 		}
+		
 		BufferedReader reader = new BufferedReader(new FileReader(intermediaryPath));
 		TinyTree tree = TinyMappingFactory.loadLegacy(reader);
-		Map<String,ClassDef> namespaceMap = tree.getDefaultNamespaceClassMap();
-		for(String cl : namespaceMap.keySet()) {
-			try {
-				Logger.Log(cl 
-				+ " -> " + 
-				namespaceMap
-				.get(cl)
-				.getName(cl));
-			} catch (Exception ex) {
-				Logger.Log(cl + " -> " + "error");
-			}
-			
-		}
+		tree.getClasses().forEach(c -> {
+			Logger.Log(c.getName("official") + " -> " + c.getRawName("intermediary"));
+		});
     }
+
+	public static class Visitor implements TinyVisitor {
+		/**
+		 * Visit a class.
+		 *
+		 * <p>{@link #start(TinyMetadata)} is called before this call and the visit stack
+		 * is empty.
+		 *
+		 * @param name the mappings
+		 */
+		public void pushClass(MappingGetter name) {
+			Logger.Log(name.getAllNames()[0]);
+		}
+	}
 }

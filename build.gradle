@@ -34,6 +34,9 @@ dependencies {
 
 	// Fabric tiny mapping parser
 	compile group: 'net.fabricmc', name: 'tiny-mappings-parser', version: '0.3.0+build.17'
+
+	// Fabric lorenz-tiny stuff
+	compile group: 'net.fabricmc', name: 'lorenz-tiny', version: '3.0.0'
 }
 
 application {
