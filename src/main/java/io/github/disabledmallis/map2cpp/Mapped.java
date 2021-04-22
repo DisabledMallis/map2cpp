@@ -5,7 +5,7 @@ public abstract class Mapped {
 	private String intermediaryName;
 	private String mappedName;
 
-	public Mapped(String officialName, String intermediaryName, String mappedName) {
+	public Mapped(String mappedName, String intermediaryName, String officialName) {
 		this.officialName = officialName;
 		this.intermediaryName = intermediaryName;
 		this.mappedName = mappedName;

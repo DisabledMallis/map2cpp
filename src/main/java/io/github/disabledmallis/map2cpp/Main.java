@@ -26,10 +26,15 @@ public class Main {
 		BufferedReader reader = new BufferedReader(new FileReader(intermediaryPath));
 		TinyTree tree = TinyMappingFactory.loadLegacy(reader);
 		tree.getClasses().forEach(c -> {
-			MappedClass mappedClass = new MappedClass("N/A", c.getName("Intermediary"), c.getName("Official"));
-			
+			MappedClass mappedClass = new MappedClass(null, c.getName("intermediary"), c.getName("official"));
+			c.getFields().forEach(f -> {
+				MappedField mappedField = new MappedField(null, f.getName("intermediary"), f.getName("official"));
+				mappedClass.addField(mappedField);
+			});
 			classes.add(mappedClass);
 		});
+
+		Logger.Log(classes.toString());
     }
 
 	public static class Visitor implements TinyVisitor {
