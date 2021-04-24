@@ -3,10 +3,6 @@ package io.github.disabledmallis.map2cpp;
 import java.util.ArrayList;
 
 public class MappedClass extends Mapped {
-	public static boolean includeSpacing = false;
-	public static String NEWLINE = "\n";
-	public static String TAB = "\t";
-
 	ArrayList<MappedField> fields;
 	public MappedClass(String mappedName, String intermediaryName, String officialName)  {
 		super(mappedName, intermediaryName, officialName);

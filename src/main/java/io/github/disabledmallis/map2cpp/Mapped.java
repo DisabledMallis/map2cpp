@@ -1,6 +1,10 @@
 package io.github.disabledmallis.map2cpp;
 
 public abstract class Mapped {
+	public static boolean includeSpacing = false;
+	public static String NEWLINE = "\n";
+	public static String TAB = "\t";
+	
 	private String officialName;
 	private String intermediaryName;
 	private String mappedName;
@@ -19,5 +23,15 @@ public abstract class Mapped {
 	}
 	public String getMappedName() {
 		return this.mappedName;
+	}
+
+	public String getTopName() throws Exception {
+		if(this.getMappedName() != null)
+			return this.getMappedName();
+		else if(this.getIntermediary() != null)
+			return this.getIntermediary();
+		else if(this.getOfficial() != null)
+			return this.getOfficial();
+		throw new Exception("No name available for this mapping");
 	}
 }
