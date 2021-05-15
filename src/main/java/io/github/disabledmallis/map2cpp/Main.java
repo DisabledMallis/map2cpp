@@ -3,7 +3,6 @@ package io.github.disabledmallis.map2cpp;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import net.fabricmc.mapping.reader.v2.MappingGetter;
 import net.fabricmc.mapping.reader.v2.TinyVisitor;
@@ -33,18 +32,13 @@ public class Main {
 		BufferedReader mappingReader = new BufferedReader(new FileReader(mappingPath));
 		TinyTree mappingTree = TinyMappingFactory.loadLegacy(mappingReader);
 
-		intermediaryTree.getClasses().forEach(c -> {
-			String intermediary = c.getName("intermediary");
-			String official = c.getName("official");
-			String[] name = {null};
-			mappingTree.getClasses().forEach(h -> {
-				String sInter = h.getName("intermediary");
-				if(intermediary.equals(sInter)) {
-					name[0] = h.getName("named");
-				}
-			});
-			Logger.Log(official + " -> " + intermediary + " -> " + name[0]);
-		});
+		MappingReader mapReader = new MappingReader(intermediaryTree, mappingTree);
+
+		MappedClass[] classes = mapReader.generateClasses();
+		for(MappedClass mClass : classes) {
+			Logger.Log("SOURCE: "+mClass.getSourcePath());
+			Logger.Log(mClass.toString());
+		}
     }
 
 	public static class Visitor implements TinyVisitor {
