@@ -12,29 +12,39 @@ import net.fabricmc.mapping.tree.TinyTree;
 
 public class Main {
 
-	static ArrayList<MappedClass> classes = new ArrayList<>();
+	//static ArrayList<MappedClass> classes = new ArrayList<>();
 
 	static String intermediaryPath = "mappings/intermediary.tiny";
+	static String mappingPath = "mappings/named.tiny";
     public static void main(String[] args) throws IOException {
 		for(int i = 0; i < args.length; i++) {
 			String current = args[i];
 			if(current.equals("-i") || current.equals("--intermediary")) {
 				intermediaryPath = args[i+1];
 			}
+			if(current.equals("-m") || current.equals("--mapped")) {
+				mappingPath = args[i+1];
+			}
 		}
 		
-		BufferedReader reader = new BufferedReader(new FileReader(intermediaryPath));
-		TinyTree tree = TinyMappingFactory.loadLegacy(reader);
-		tree.getClasses().forEach(c -> {
-			MappedClass mappedClass = new MappedClass(null, c.getName("intermediary"), c.getName("official"));
-			c.getFields().forEach(f -> {
-				MappedField mappedField = new MappedField(null, f.getName("intermediary"), f.getName("official"));
-				mappedClass.addField(mappedField);
-			});
-			classes.add(mappedClass);
-		});
+		BufferedReader intermediaryReader = new BufferedReader(new FileReader(intermediaryPath));
+		TinyTree intermediaryTree = TinyMappingFactory.loadLegacy(intermediaryReader);
 
-		Logger.Log(classes.toString());
+		BufferedReader mappingReader = new BufferedReader(new FileReader(mappingPath));
+		TinyTree mappingTree = TinyMappingFactory.loadLegacy(mappingReader);
+
+		intermediaryTree.getClasses().forEach(c -> {
+			String intermediary = c.getName("intermediary");
+			String official = c.getName("official");
+			String[] name = {"NO NAME FOUND"};
+			mappingTree.getClasses().forEach(h -> {
+				String sInter = h.getName("intermediary");
+				if(intermediary.equals(sInter)) {
+					name[0] = h.getName("named");
+				}
+			});
+			Logger.Log(official + " -> " + intermediary + " -> " + name[0]);
+		});
     }
 
 	public static class Visitor implements TinyVisitor {
