@@ -36,7 +36,7 @@ public class Main {
 		intermediaryTree.getClasses().forEach(c -> {
 			String intermediary = c.getName("intermediary");
 			String official = c.getName("official");
-			String[] name = {"NO NAME FOUND"};
+			String[] name = {null};
 			mappingTree.getClasses().forEach(h -> {
 				String sInter = h.getName("intermediary");
 				if(intermediary.equals(sInter)) {
