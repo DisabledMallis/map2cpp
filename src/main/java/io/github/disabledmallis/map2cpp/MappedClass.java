@@ -1,30 +1,9 @@
 package io.github.disabledmallis.map2cpp;
 
-public class MappedClass {
-	private MappingString officialName;
-	private MappingString intermediaryName;
-	private MappingString mappedName;
+public class MappedClass extends Mapping {
 
 	public MappedClass(String officialName, String intermediaryName, String mappedName) {
-		this.officialName = new MappingString(officialName);
-		this.intermediaryName = new MappingString(intermediaryName);
-		this.mappedName = new MappingString(mappedName);
-	}
-
-	public String getOfficial() {
-		return this.officialName.toString();
-	}
-
-	public String getIntermediary() {
-		return this.intermediaryName.toString();
-	}
-
-	public String getMapped() {
-		return this.mappedName.toString();
-	}
-
-	public String getPackageless() {
-		return this.mappedName.getPackagelessName();
+		super(officialName, intermediaryName, mappedName);
 	}
 
 	public String getSourcePath() {

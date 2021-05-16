@@ -10,12 +10,12 @@ import net.fabricmc.mapping.tree.TinyMappingFactory;
 import net.fabricmc.mapping.tree.TinyTree;
 
 public class Main {
-
-	//static ArrayList<MappedClass> classes = new ArrayList<>();
-
+	//Paths to mapping files, intermediary and named
 	static String intermediaryPath = "mappings/intermediary.tiny";
 	static String mappingPath = "mappings/named.tiny";
+
     public static void main(String[] args) throws IOException {
+		// Read arguments
 		for(int i = 0; i < args.length; i++) {
 			String current = args[i];
 			if(current.equals("-i") || current.equals("--intermediary")) {
@@ -26,16 +26,24 @@ public class Main {
 			}
 		}
 		
+		//
+		// Open and parse the trees
+		//
 		BufferedReader intermediaryReader = new BufferedReader(new FileReader(intermediaryPath));
 		TinyTree intermediaryTree = TinyMappingFactory.loadLegacy(intermediaryReader);
 
 		BufferedReader mappingReader = new BufferedReader(new FileReader(mappingPath));
 		TinyTree mappingTree = TinyMappingFactory.loadLegacy(mappingReader);
 
+		// Read the trees
 		MappingReader mapReader = new MappingReader(intermediaryTree, mappingTree);
 
+		// Generate the classes
 		MappedClass[] classes = mapReader.generateClasses();
+
+		//Loop through
 		for(MappedClass mClass : classes) {
+			//Print them out
 			Logger.Log("SOURCE: "+mClass.getSourcePath());
 			Logger.Log(mClass.toString());
 		}
