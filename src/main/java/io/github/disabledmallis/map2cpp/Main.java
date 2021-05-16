@@ -3,6 +3,7 @@ package io.github.disabledmallis.map2cpp;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintStream;
 
 import net.fabricmc.mapping.reader.v2.MappingGetter;
 import net.fabricmc.mapping.reader.v2.TinyVisitor;
@@ -25,7 +26,7 @@ public class Main {
 				mappingPath = args[i+1];
 			}
 		}
-		
+
 		//
 		// Open and parse the trees
 		//
@@ -36,7 +37,8 @@ public class Main {
 		TinyTree mappingTree = TinyMappingFactory.loadLegacy(mappingReader);
 
 		// Read the trees
-		MappingReader mapReader = new MappingReader(intermediaryTree, mappingTree);
+
+						MappingReader mapReader = new MappingReader(intermediaryTree, mappingTree);
 
 		// Generate the classes
 		MappedClass[] classes = mapReader.generateClasses();

@@ -46,10 +46,8 @@ public class MappingReader {
 				return;
 			}
 			String official = c.getName("official");
-			String name = namedDef.getName("official");
+			String name = namedDef.getName("named"); //have to help my dad with stuff gonna be a while
 			
-
-
 			//If the name isnt null (some class names are never added to yarn for one reason or another)
 			if(name != null) {
 				//Create a new MappedClass instance
@@ -63,6 +61,10 @@ public class MappingReader {
 							namedFieldDef[0] = nf;
 						}
 					});
+					if(namedFieldDef[0] == null) {
+						Logger.Log("Null field name");
+						return;
+					}
 					MappedField mField = new MappedField(f.getName("official"), f.getName("intermediary"), namedFieldDef[0].getName("named"));
 					mappedClass.addField(mField);
 				});

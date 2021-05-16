@@ -38,6 +38,14 @@ public class MappedClass extends Mapping {
 		classCode.append("\n");
 		classCode.append("public:");
 		classCode.append("\n");
+
+		/* Generate field accessors & modifiers */
+		for(MappedField f : this.fields) {
+			classCode.append(f.toString());
+		}
+
+		/* TODO: Generate function calls */
+
 		classCode.append("};");
 		//Close header guard
 		classCode.append("\n");
