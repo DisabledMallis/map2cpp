@@ -1,6 +1,10 @@
 package io.github.disabledmallis.map2cpp;
 
+import java.util.ArrayList;
+
 public class MappedClass extends Mapping {
+
+	private ArrayList<MappedField> fields = new ArrayList<>();
 
 	public MappedClass(String officialName, String intermediaryName, String mappedName) {
 		super(officialName, intermediaryName, mappedName);
@@ -8,6 +12,10 @@ public class MappedClass extends Mapping {
 
 	public String getSourcePath() {
 		return this.getMapped()+".h";
+	}
+
+	public void addField(MappedField field) {
+		fields.add(field);
 	}
 
 	public String toString() {
@@ -31,6 +39,9 @@ public class MappedClass extends Mapping {
 		classCode.append("public:");
 		classCode.append("\n");
 		classCode.append("};");
+		//Close header guard
+		classCode.append("\n");
+		classCode.append("#ENDIF");
 
 
 		return classCode.toString();
