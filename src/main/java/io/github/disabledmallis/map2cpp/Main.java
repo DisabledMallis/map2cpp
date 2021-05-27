@@ -37,8 +37,7 @@ public class Main {
 		TinyTree mappingTree = TinyMappingFactory.loadLegacy(mappingReader);
 
 		// Read the trees
-
-						MappingReader mapReader = new MappingReader(intermediaryTree, mappingTree);
+		MappingReader mapReader = new MappingReader(intermediaryTree, mappingTree);
 
 		// Generate the classes
 		MappedClass[] classes = mapReader.generateClasses();
