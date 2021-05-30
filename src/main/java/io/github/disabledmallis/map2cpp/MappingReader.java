@@ -65,7 +65,7 @@ public class MappingReader {
 						Logger.Log("Null field name");
 						return;
 					}
-					MappedField mField = new MappedField(f.getName("official"), f.getName("intermediary"), namedFieldDef[0].getName("named"));
+					MappedField mField = new MappedField(JavaType.OBJECT, f.getName("official"), f.getName("intermediary"), namedFieldDef[0].getName("named"));
 					mappedClass.addField(mField);
 				});
 

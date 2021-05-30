@@ -28,11 +28,22 @@ public class JavaType {
 		}
 	}
 
+	public static JavaType BOOL = new JavaType("Z");
+	public static JavaType BYTE = new JavaType("B");
+	public static JavaType CHAR = new JavaType("C");
+	public static JavaType SHORT = new JavaType("S");
+	public static JavaType INT = new JavaType("I");
+	public static JavaType LONG = new JavaType("J");
+	public static JavaType FLOAT = new JavaType("F");
+	public static JavaType DOUBLE = new JavaType("D");
+	public static JavaType OBJECT = new JavaType("Ljava/lang/Object;");
+
 	Primitives primitiveForm;
 	MappingString classPath;
 
 	public JavaType(String fromMapped) {
 		Primitives primF = Primitives.jobject;
+
 		for(Primitives prim : Primitives.values()) {
 			if(prim.getRepMap() == fromMapped.charAt(0)) {
 				primF = prim;
@@ -41,7 +52,7 @@ public class JavaType {
 		}
 
 		primitiveForm = primF;
-		if(primF == Primitives.jobject) {
+		if(primF.equals(Primitives.jobject)) {
 			classPath = new MappingString(fromMapped.substring(0, fromMapped.length()-1));
 		}
 	}
