@@ -22,10 +22,10 @@ public class MappedClass extends Mapping {
 		StringBuilder classCode = new StringBuilder();
 
 		/* Header guarding uwu */
-		classCode.append("#IFNDEF ");
+		classCode.append("#ifndef ");
 		classCode.append(this.getPackageless());
 		classCode.append("\n");
-		classCode.append("#DEFINE ");
+		classCode.append("#define ");
 		classCode.append(this.getPackageless());
 		classCode.append("\n");
 		//Code time
@@ -46,7 +46,7 @@ public class MappedClass extends Mapping {
 		classCode.append("};");
 		//Close header guard
 		classCode.append("\n");
-		classCode.append("#ENDIF");
+		classCode.append("#endif");
 		classCode.append("\n");
 
 

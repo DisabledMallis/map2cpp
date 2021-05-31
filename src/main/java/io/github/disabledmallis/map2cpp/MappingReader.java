@@ -46,10 +46,12 @@ public class MappingReader {
 				return;
 			}
 			String official = c.getName("official");
-			String name = namedDef.getName("named"); //have to help my dad with stuff gonna be a while
+			String name = namedDef.getName("named");
 			
 			//If the name isnt null (some class names are never added to yarn for one reason or another)
 			if(name != null) {
+				Logger.Log("Creating class "+name);
+
 				//Create a new MappedClass instance
 				MappedClass mappedClass = new MappedClass(official, intermediary, name);
 
@@ -68,9 +70,11 @@ public class MappingReader {
 					String typeStr = namedFieldDef[0].getDescriptor("named");
 					MappedField mField = new MappedField(new JavaType(typeStr), f.getName("official"), f.getName("intermediary"), namedFieldDef[0].getName("named"));
 					mappedClass.addField(mField);
+					Logger.Log("Class "+name+" added field "+mField.getMapped());
 				});
 
 				classArrL.add(mappedClass);
+				Logger.Log("Class "+name+" successfully created");
 			}
 		});
 

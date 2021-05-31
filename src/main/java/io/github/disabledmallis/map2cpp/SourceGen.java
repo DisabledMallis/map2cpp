@@ -25,6 +25,6 @@ public class SourceGen {
 
 		Files.writeString(sourceFile.toPath(), toGen.toString());
 
-		Logger.Log("Generated "+toGen.getSourcePath());
+		Logger.Log("Generated file "+toGen.getSourcePath());
 	}
 }
