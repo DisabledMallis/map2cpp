@@ -2,7 +2,7 @@ package io.github.disabledmallis.map2cpp;
 
 public class MappingString implements CharSequence {
 
-	String fullMap;
+	private String fullMap;
 
 	public MappingString(String fullMap) {
 		this.fullMap = fullMap;
@@ -14,14 +14,25 @@ public class MappingString implements CharSequence {
 
 	Example:
 	net/minecraft/client/MinecraftClient
+	or
+	net/minecraft/client/MinecraftClient$BullshitSubclass
 	becomes
 	MinecraftClient
+
+	nobody cares about subclasses or what ever the fuck they are so like
 
 	*/
 	public String getPackagelessName() {
 		String[] split = fullMap.split("/");
 		String last = split[split.length-1];
+		if(last.contains("$")) {
+			return last.substring(0, last.indexOf("$"));
+		}
 		return last;
+	}
+
+	public String getFullName() {
+		return fullMap;
 	}
 
 	@Override

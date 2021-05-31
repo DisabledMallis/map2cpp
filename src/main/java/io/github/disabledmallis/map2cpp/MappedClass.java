@@ -28,9 +28,6 @@ public class MappedClass extends Mapping {
 		classCode.append("#DEFINE ");
 		classCode.append(this.getMapped());
 		classCode.append("\n");
-		//Include JNI
-		classCode.append("#include <jni.h>");
-		classCode.append("\n");
 		//Code time
 		classCode.append("class ");
 		classCode.append(this.getPackageless());
@@ -50,6 +47,7 @@ public class MappedClass extends Mapping {
 		//Close header guard
 		classCode.append("\n");
 		classCode.append("#ENDIF");
+		classCode.append("\n");
 
 
 		return classCode.toString();

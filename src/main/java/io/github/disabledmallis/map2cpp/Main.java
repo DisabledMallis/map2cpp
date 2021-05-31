@@ -19,10 +19,20 @@ public class Main {
 		// Read arguments
 		for(int i = 0; i < args.length; i++) {
 			String current = args[i];
+			if(current.equals("-h") || current.equals("--help")) {
+				Logger.Log("Help Menu:");
+				Logger.Log("-i --intermediary | The intermediary mappings file");
+				Logger.Log("-m --mapped | The named mappings file");
+				Logger.Log("-t --target | The target mapping type (named, intermediary, official | for Forge, Fabric and most other mod loaders target intermediary. Official for vanilla client.)");
+				return;
+			}
 			if(current.equals("-i") || current.equals("--intermediary")) {
 				intermediaryPath = args[i+1];
 			}
 			if(current.equals("-m") || current.equals("--mapped")) {
+				mappingPath = args[i+1];
+			}
+			if(current.equals("-t") || current.equals("--target")) {
 				mappingPath = args[i+1];
 			}
 		}

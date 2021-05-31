@@ -57,6 +57,17 @@ public class JavaType {
 		}
 	}
 
+	public MappingString getClasspath() {
+		return classPath;
+	}
+
+	public String getPrimitiveName() {
+		if(primitiveForm.equals(Primitives.jobject)) {
+			return getClasspath().getFullName();
+		}
+		return ""+primitiveForm.getRepMap();
+	}
+
 	public String getCppType() {
 		switch(primitiveForm) {
 			case jobject:
