@@ -14,6 +14,8 @@ public class Main {
 	//Paths to mapping files, intermediary and named
 	static String intermediaryPath = "mappings/intermediary.tiny";
 	static String mappingPath = "mappings/named.tiny";
+	static String targetMapping = "official";
+	static String outputDir = "generated/src/";
 
     public static void main(String[] args) throws IOException {
 		// Read arguments
@@ -21,9 +23,10 @@ public class Main {
 			String current = args[i];
 			if(current.equals("-h") || current.equals("--help")) {
 				Logger.Log("Help Menu:");
-				Logger.Log("-i --intermediary | The intermediary mappings file");
-				Logger.Log("-m --mapped | The named mappings file");
+				Logger.Log("-i --intermediary | The intermediary mappings file.");
+				Logger.Log("-m --mapped | The named mappings file.");
 				Logger.Log("-t --target | The target mapping type (named, intermediary, official | for Forge, Fabric and most other mod loaders target intermediary. Official for vanilla client.)");
+				Logger.Log("-o --output | The directory to output the generated source files.");
 				return;
 			}
 			if(current.equals("-i") || current.equals("--intermediary")) {
@@ -33,7 +36,10 @@ public class Main {
 				mappingPath = args[i+1];
 			}
 			if(current.equals("-t") || current.equals("--target")) {
-				mappingPath = args[i+1];
+				targetMapping = args[i+1];
+			}
+			if(current.equals("-o") || current.equals("--output")) {
+				outputDir = args[i+1];
 			}
 		}
 
@@ -52,12 +58,22 @@ public class Main {
 		// Generate the classes
 		MappedClass[] classes = mapReader.generateClasses();
 
-		//Loop through
+		// Generate sources
+		SourceGen sourceGen = new SourceGen(outputDir);
 		for(MappedClass mClass : classes) {
+			try {
+				sourceGen.generateClass(mClass);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		//Loop through
+		/*for(MappedClass mClass : classes) {
 			//Print them out
 			Logger.Log("SOURCE: "+mClass.getSourcePath());
 			Logger.Log(mClass.toString());
-		}
+		}*/
     }
 
 	public static class Visitor implements TinyVisitor {

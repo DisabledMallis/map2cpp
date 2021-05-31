@@ -38,11 +38,18 @@ public class JavaType {
 	public static JavaType DOUBLE = new JavaType("D");
 	public static JavaType OBJECT = new JavaType("Ljava/lang/Object;");
 
+	boolean isArray;
 	Primitives primitiveForm;
 	MappingString classPath;
 
 	public JavaType(String fromMapped) {
 		Primitives primF = Primitives.jobject;
+		isArray = false;
+
+		if(fromMapped.charAt(0) == '[') {
+			isArray = true;
+			fromMapped = fromMapped.substring(1);
+		}
 
 		for(Primitives prim : Primitives.values()) {
 			if(prim.getRepMap() == fromMapped.charAt(0)) {
@@ -69,6 +76,9 @@ public class JavaType {
 	}
 
 	public String getCppType() {
+		return getCppTypeHelper() + (isArray ? "*" : "");
+	}
+	private String getCppTypeHelper() {
 		switch(primitiveForm) {
 			case jobject:
 				return "struct " + classPath.getPackagelessName()+"*";

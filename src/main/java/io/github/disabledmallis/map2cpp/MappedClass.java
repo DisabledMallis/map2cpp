@@ -23,10 +23,10 @@ public class MappedClass extends Mapping {
 
 		/* Header guarding uwu */
 		classCode.append("#IFNDEF ");
-		classCode.append(this.getMapped());
+		classCode.append(this.getPackageless());
 		classCode.append("\n");
 		classCode.append("#DEFINE ");
-		classCode.append(this.getMapped());
+		classCode.append(this.getPackageless());
 		classCode.append("\n");
 		//Code time
 		classCode.append("class ");
