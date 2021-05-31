@@ -53,7 +53,7 @@ public class JavaType {
 
 		primitiveForm = primF;
 		if(primF.equals(Primitives.jobject)) {
-			classPath = new MappingString(fromMapped.substring(0, fromMapped.length()-1));
+			classPath = new MappingString(fromMapped.substring(1, fromMapped.length()-1));
 		}
 	}
 
@@ -63,7 +63,7 @@ public class JavaType {
 
 	public String getPrimitiveName() {
 		if(primitiveForm.equals(Primitives.jobject)) {
-			return getClasspath().getFullName();
+			return "L"+getClasspath().getFullName()+";";
 		}
 		return ""+primitiveForm.getRepMap();
 	}

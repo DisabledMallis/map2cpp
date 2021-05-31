@@ -36,7 +36,9 @@ public class MappedField extends Mapping {
 		builder.append("\t");
 		builder.append("return (");
 		builder.append(this.returnType.getCppType());
-		builder.append(")env->GetObjectField(this, field);");
+		builder.append(")env->");
+		builder.append(JNIHelper.getProperFieldAccessCall(this.returnType));
+		builder.append("(this, field);");
 		builder.append("\n");
 		builder.append("\t");
 		builder.append("};");
