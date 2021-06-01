@@ -3,7 +3,6 @@ package io.github.disabledmallis.map2cpp;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintStream;
 
 import net.fabricmc.mapping.reader.v2.MappingGetter;
 import net.fabricmc.mapping.reader.v2.TinyVisitor;
