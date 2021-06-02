@@ -1,6 +1,7 @@
 package io.github.disabledmallis.map2cpp;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -66,6 +67,9 @@ public class Main {
 				e.printStackTrace();
 			}
 		}
+
+		// Dump helper code that generated sources rely on
+		sourceGen.writeFile(new File(outputDir+"/JNIUtil.h"), sourceGen.getJniUtilSource());
 
 		//Loop through
 		/*for(MappedClass mClass : classes) {

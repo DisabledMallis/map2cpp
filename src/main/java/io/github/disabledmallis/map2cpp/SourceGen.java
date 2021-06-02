@@ -33,12 +33,17 @@ public class SourceGen {
 		Files.createDirectories(fullPath.getParent());
 
 		File sourceFile = new File(fullPath.toString());
-		sourceFile.createNewFile();
-
-		sourceFile.setWritable(true);
-
-		Files.writeString(sourceFile.toPath(), toGen.toString());
+		writeFile(sourceFile, toGen.toString());
 
 		Logger.Log("Generated file "+toGen.getSourcePath());
+	}
+
+	public void writeFile(File toWrite, String content) throws IOException {
+		if(!toWrite.exists()) {
+			toWrite.createNewFile();
+		}
+		toWrite.setWritable(true);
+
+		Files.writeString(toWrite.toPath(), content);
 	}
 }

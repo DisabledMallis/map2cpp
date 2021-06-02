@@ -11,6 +11,17 @@ plugins {
     id 'application'
 }
 
+sourceSets {
+	main {
+		java {
+			srcDir 'src'
+		}
+		resources {
+			srcDir 'resources'
+		}
+	}
+}
+
 repositories {
     // Use JCenter for resolving dependencies.
     jcenter()
