@@ -12,10 +12,11 @@ import net.fabricmc.mapping.tree.TinyTree;
 
 public class Main {
 	//Paths to mapping files, intermediary and named
-	static String intermediaryPath = "mappings/intermediary.tiny";
-	static String mappingPath = "mappings/named.tiny";
-	static String targetMapping = "official";
-	static String outputDir = "generated/src/";
+	public static String intermediaryPath = "mappings/intermediary.tiny";
+	public static String mappingPath = "mappings/named.tiny";
+	public static String targetMapping = "official";
+	public static String outputDir = "generated/src/";
+	public static boolean genCmake = false;
 
     public static void main(String[] args) throws IOException {
 		// Read arguments
@@ -27,6 +28,7 @@ public class Main {
 				Logger.Log("-m --mapped | The named mappings file.");
 				Logger.Log("-t --target | The target mapping type (named, intermediary, official | for Forge, Fabric and most other mod loaders target intermediary. Official for vanilla client.)");
 				Logger.Log("-o --output | The directory to output the generated source files.");
+				Logger.Log("-cm --cmake | Generate appropriate CMakeLists.txt files along with sources.");
 				return;
 			}
 			if(current.equals("-i") || current.equals("--intermediary")) {
@@ -40,6 +42,9 @@ public class Main {
 			}
 			if(current.equals("-o") || current.equals("--output")) {
 				outputDir = args[i+1];
+			}
+			if(current.equals("-cm") || current.equals("--cmake")) {
+				genCmake = true;
 			}
 		}
 

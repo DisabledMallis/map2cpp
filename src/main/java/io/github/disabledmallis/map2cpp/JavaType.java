@@ -2,6 +2,7 @@ package io.github.disabledmallis.map2cpp;
 
 public class JavaType {
 
+	//Primitive java types
 	enum Primitives {
 		jboolean('z'),
 		jbyte('b'),
@@ -28,6 +29,7 @@ public class JavaType {
 		}
 	}
 
+	//Primitive types represented as JavaTypes
 	public static JavaType BOOL = new JavaType("Z");
 	public static JavaType BYTE = new JavaType("B");
 	public static JavaType CHAR = new JavaType("C");
@@ -46,11 +48,13 @@ public class JavaType {
 		Primitives primF = Primitives.jobject;
 		isArray = false;
 
+		// [ indicates an array, we should handle that.
 		if(fromMapped.charAt(0) == '[') {
 			isArray = true;
 			fromMapped = fromMapped.substring(1);
 		}
 
+		//Search for the type's primitive
 		for(Primitives prim : Primitives.values()) {
 			if(prim.getRepMap() == fromMapped.charAt(0)) {
 				primF = prim;
@@ -59,15 +63,18 @@ public class JavaType {
 		}
 
 		primitiveForm = primF;
+		//If its an object, save the classpath without the L or ;
 		if(primF.equals(Primitives.jobject)) {
 			classPath = new MappingString(fromMapped.substring(1, fromMapped.length()-1));
 		}
 	}
 
+	//Returns the classpath, must be an Object to work, otherwise its null.
 	public MappingString getClasspath() {
 		return classPath;
 	}
 
+	//Get the primitive name back.
 	public String getPrimitiveName() {
 		if(primitiveForm.equals(Primitives.jobject)) {
 			return "L"+getClasspath().getFullName()+";";
@@ -75,12 +82,17 @@ public class JavaType {
 		return ""+primitiveForm.getRepMap();
 	}
 
+	//Get the C++ equivelant.
 	public String getCppType() {
+		//Add another pointer (*) if its an array
 		return getCppTypeHelper() + (isArray ? "*" : "");
 	}
+	//I'm lazy
 	private String getCppTypeHelper() {
 		switch(primitiveForm) {
 			case jobject:
+				// Objects should be classname pointers so when their 
+				// header is included, it can function as expected for the developer.
 				return "struct " + classPath.getPackagelessName()+"*";
 			case jboolean:
 				return "bool";
@@ -99,6 +111,7 @@ public class JavaType {
 			case jshort:
 				return "short";
 		}
+		//Can't figure out what it is? Fuck it, guess its a void pointer
 		return "void*";
 	}
 }

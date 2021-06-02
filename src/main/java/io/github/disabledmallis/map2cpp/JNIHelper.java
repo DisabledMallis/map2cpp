@@ -1,6 +1,7 @@
 package io.github.disabledmallis.map2cpp;
 
 public class JNIHelper {
+	// Diff primitives have their own JNI calls, we need to use these properly
 	public static String getProperFieldAccessCall(JavaType retType) {
 		switch(retType.primitiveForm) {
 			case jobject:

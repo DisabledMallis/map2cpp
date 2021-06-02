@@ -10,7 +10,7 @@ hJNI_GetCreatedJavaVMs oJNI_GetCreatedJavaVMs;
 #endif
 
 // Get JNIEnv from the jvm dll & its exports
-JNIEnv* Utils::getJNI()
+JNIEnv* getJNI()
 {
 	JavaVM* jvm;
 	JNIEnv* jenv;
@@ -23,7 +23,7 @@ JNIEnv* Utils::getJNI()
 }
 
 /* Generic Minecraft classloader, should work across versions 1.7.10-latest because they share the same launch wrapper??? */
-jobject Utils::getClassLoader(JNIEnv* env)
+jobject getClassLoader(JNIEnv* env)
 {
 	jclass launch = env->FindClass("net/minecraft/launchwrapper/Launch");
 	jfieldID sfid = env->GetStaticFieldID(launch, "classLoader", "Lnet/minecraft/launchwrapper/LaunchClassLoader;");
@@ -33,7 +33,7 @@ jobject Utils::getClassLoader(JNIEnv* env)
 }
 
 // Find a class from the environment
-jclass Utils::findClass(JNIEnv* env, const char* className)
+jclassfindClass(JNIEnv* env, const char* className)
 {
 	jstring name = env->NewStringUTF(className);
 	jobject classLoader = getClassLoader(env);

@@ -10,14 +10,17 @@ public class MappedClass extends Mapping {
 		super(officialName, intermediaryName, mappedName);
 	}
 
+	// Get the path to the source file
 	public String getSourcePath() {
 		return this.getMapped()+".h";
 	}
 
+	// Add a field to the class
 	public void addField(MappedField field) {
 		fields.add(field);
 	}
 
+	// toString should output generated C++ code for the class
 	public String toString() {
 		StringBuilder classCode = new StringBuilder();
 
@@ -28,6 +31,14 @@ public class MappedClass extends Mapping {
 		classCode.append("#define ");
 		classCode.append(this.getPackageless());
 		classCode.append("\n");
+
+		//Include required files
+		classCode.append("#include <");
+		classCode.append(Main.outputDir);
+		classCode.append("JNIUtil.h>");
+		classCode.append("\n");
+		classCode.append("\n");
+
 		//Code time
 		classCode.append("class ");
 		classCode.append(this.getPackageless());
