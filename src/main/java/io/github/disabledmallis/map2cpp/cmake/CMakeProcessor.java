@@ -1,8 +1,6 @@
 package io.github.disabledmallis.map2cpp.cmake;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.util.logging.FileHandler;
 
 import io.github.disabledmallis.map2cpp.FileHelper;
 import io.github.disabledmallis.map2cpp.Logger;
@@ -31,7 +29,9 @@ public class CMakeProcessor {
 				}
 			}
 			String listCode = list.toString();
-			FileHelper.writeFile(dir.getPath()+"/CMakeLists.txt", listCode);
+			String outputLoc = dir.getPath()+"/CMakeLists.txt";
+			Logger.Log("Completed CMakeLists at " + outputLoc);
+			FileHelper.writeFile(outputLoc, listCode);
 		}
 		else {
 			throw new Exception("'dir' ("+dir.getPath()+") is not a directory!");
