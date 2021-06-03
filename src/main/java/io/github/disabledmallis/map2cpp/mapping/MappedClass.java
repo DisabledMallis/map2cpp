@@ -2,6 +2,8 @@ package io.github.disabledmallis.map2cpp.mapping;
 
 import java.util.ArrayList;
 
+import io.github.disabledmallis.map2cpp.Main;
+
 public class MappedClass extends Mapping {
 
 	private ArrayList<MappedField> fields = new ArrayList<>();

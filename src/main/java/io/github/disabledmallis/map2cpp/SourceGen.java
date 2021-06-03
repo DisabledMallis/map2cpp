@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import io.github.disabledmallis.map2cpp.mapping.MappedClass;
+
 public class SourceGen {
 
 	String sourceDir;
@@ -35,18 +37,8 @@ public class SourceGen {
 		Files.createDirectories(fullPath.getParent());
 
 		File sourceFile = new File(fullPath.toString());
-		writeFile(sourceFile, toGen.toString());
+		FileHelper.writeFile(sourceFile, toGen.toString());
 
 		Logger.Log("Generated file "+toGen.getSourcePath());
-	}
-
-	// Function to write a string to a file, as well as make it if it doesn't exit
-	public void writeFile(File toWrite, String content) throws IOException {
-		if(!toWrite.exists()) {
-			toWrite.createNewFile();
-		}
-		toWrite.setWritable(true);
-
-		Files.writeString(toWrite.toPath(), content);
 	}
 }

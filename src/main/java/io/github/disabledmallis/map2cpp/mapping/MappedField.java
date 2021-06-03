@@ -1,5 +1,6 @@
 package io.github.disabledmallis.map2cpp.mapping;
 
+import io.github.disabledmallis.map2cpp.JNIHelper;
 import io.github.disabledmallis.map2cpp.JavaType;
 
 public class MappedField extends Mapping {

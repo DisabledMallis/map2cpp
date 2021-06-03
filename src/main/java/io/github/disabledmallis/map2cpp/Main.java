@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import io.github.disabledmallis.map2cpp.cmake.CMakeProcessor;
+import io.github.disabledmallis.map2cpp.mapping.MappedClass;
+import io.github.disabledmallis.map2cpp.mapping.MappingReader;
 import net.fabricmc.mapping.reader.v2.MappingGetter;
 import net.fabricmc.mapping.reader.v2.TinyVisitor;
 import net.fabricmc.mapping.tree.TinyMappingFactory;
@@ -16,9 +19,9 @@ public class Main {
 	public static String mappingPath = "mappings/named.tiny";
 	public static String targetMapping = "official";
 	public static String outputDir = "generated/src/";
-	public static boolean genCmake = false;
+	public static String cmakeTarget;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 		// Read arguments
 		for(int i = 0; i < args.length; i++) {
 			String current = args[i];
@@ -28,7 +31,7 @@ public class Main {
 				Logger.Log("-m --mapped | The named mappings file.");
 				Logger.Log("-t --target | The target mapping type (named, intermediary, official | for Forge, Fabric and most other mod loaders target intermediary. Official for vanilla client.)");
 				Logger.Log("-o --output | The directory to output the generated source files.");
-				Logger.Log("-cm --cmake | Generate appropriate CMakeLists.txt files along with sources.");
+				Logger.Log("-cm --cmake | Generate appropriate CMakeLists.txt files along with sources with the provided CMake target.");
 				return;
 			}
 			if(current.equals("-i") || current.equals("--intermediary")) {
@@ -44,7 +47,7 @@ public class Main {
 				outputDir = args[i+1];
 			}
 			if(current.equals("-cm") || current.equals("--cmake")) {
-				genCmake = true;
+				cmakeTarget = args[i+1];
 			}
 		}
 
@@ -74,7 +77,13 @@ public class Main {
 		}
 
 		// Dump helper code that generated sources rely on
-		sourceGen.writeFile(new File(outputDir+"/JNIUtil.h"), sourceGen.getJniUtilSource());
+		FileHelper.writeFile(new File(outputDir+"/JNIUtil.h"), sourceGen.getJniUtilSource());
+
+		//Generate CMake code
+		if(cmakeTarget != null) {
+			CMakeProcessor cmakeProc = new CMakeProcessor(cmakeTarget);
+			cmakeProc.createListForDir(new File(outputDir));
+		}
 
 		//Loop through
 		/*for(MappedClass mClass : classes) {
