@@ -1,4 +1,4 @@
-package io.github.disabledmallis.map2cpp;
+package io.github.disabledmallis.map2cpp.mapping;
 
 public abstract class Mapping {
 	private MappingString officialName;

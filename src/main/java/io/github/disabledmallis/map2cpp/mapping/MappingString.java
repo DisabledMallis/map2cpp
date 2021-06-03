@@ -1,4 +1,4 @@
-package io.github.disabledmallis.map2cpp;
+package io.github.disabledmallis.map2cpp.mapping;
 
 public class MappingString implements CharSequence {
 

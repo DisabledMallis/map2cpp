@@ -1,5 +1,7 @@
 package io.github.disabledmallis.map2cpp;
 
+import io.github.disabledmallis.map2cpp.mapping.MappingString;
+
 public class JavaType {
 
 	//Primitive java types

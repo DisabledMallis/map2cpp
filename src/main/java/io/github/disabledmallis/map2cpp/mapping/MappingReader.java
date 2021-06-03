@@ -1,7 +1,8 @@
-package io.github.disabledmallis.map2cpp;
+package io.github.disabledmallis.map2cpp.mapping;
 
 import java.util.ArrayList;
 
+import io.github.disabledmallis.map2cpp.Logger;
 import net.fabricmc.mapping.tree.ClassDef;
 import net.fabricmc.mapping.tree.FieldDef;
 import net.fabricmc.mapping.tree.TinyTree;

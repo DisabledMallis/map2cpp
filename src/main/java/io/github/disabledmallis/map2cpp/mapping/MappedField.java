@@ -1,4 +1,6 @@
-package io.github.disabledmallis.map2cpp;
+package io.github.disabledmallis.map2cpp.mapping;
+
+import io.github.disabledmallis.map2cpp.JavaType;
 
 public class MappedField extends Mapping {
 
