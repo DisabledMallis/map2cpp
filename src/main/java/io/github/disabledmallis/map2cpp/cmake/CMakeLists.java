@@ -31,6 +31,9 @@ public class CMakeLists {
 			builder.append(dir);
 			builder.append(")\n");
 		}
+		if(sources.size() == 0) {
+			return builder.toString();
+		}
 		builder.append("target_sources(");
 		builder.append(target);
 		builder.append(" PRIVATE \n");
