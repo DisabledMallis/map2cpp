@@ -78,6 +78,7 @@ public class Main {
 
 		// Dump helper code that generated sources rely on
 		FileHelper.writeFile(new File(outputDir+"/JNIUtil.h"), sourceGen.getJniUtilSource());
+		sourceGen.genJniSources(outputDir);
 
 		//Generate CMake code
 		if(cmakeTarget != null) {
