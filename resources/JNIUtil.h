@@ -1,8 +1,7 @@
 #ifndef JNIUTIL
 #define JNIUTIL
 
-// Dont forget to include jni.h in your include dirs
-#include <jni.h>
+#include "jni.h"
 
 #ifndef hJNI_GetCreatedJavaVMs
 typedef jint(*hJNI_GetCreatedJavaVMs)(JavaVM** vmBuf, jsize bufLen, jsize* nVMs);
@@ -10,7 +9,7 @@ hJNI_GetCreatedJavaVMs oJNI_GetCreatedJavaVMs;
 #endif
 
 // Get JNIEnv from the jvm dll & its exports
-JNIEnv* getJNI()
+auto getJNI() -> JNIEnv*
 {
 	JavaVM* jvm;
 	JNIEnv* jenv;
@@ -23,7 +22,7 @@ JNIEnv* getJNI()
 }
 
 /* Generic Minecraft classloader, should work across versions 1.7.10-latest because they share the same launch wrapper??? */
-jobject getClassLoader(JNIEnv* env)
+auto getClassLoader(JNIEnv* env) -> jobject
 {
 	jclass launch = env->FindClass("net/minecraft/launchwrapper/Launch");
 	jfieldID sfid = env->GetStaticFieldID(launch, "classLoader", "Lnet/minecraft/launchwrapper/LaunchClassLoader;");
@@ -33,7 +32,7 @@ jobject getClassLoader(JNIEnv* env)
 }
 
 // Find a class from the environment
-jclassfindClass(JNIEnv* env, const char* className)
+auto jclassfindClass(JNIEnv* env, const char* className) -> jclass
 {
 	jstring name = env->NewStringUTF(className);
 	jobject classLoader = getClassLoader(env);

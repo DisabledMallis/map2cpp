@@ -35,9 +35,17 @@ public class MappedClass extends Mapping {
 		classCode.append("\n");
 
 		//Include required files
-		classCode.append("#include <");
-		classCode.append(Main.outputDir);
-		classCode.append("JNIUtil.h>");
+		classCode.append("#include \"");
+		/*
+		 We should get the JNIUtil.h relatively to avoid conflicts and issues
+		*/
+		 for(char c : this.getSourcePath().toCharArray()) {
+			if(c == '/' || c == '\\') {
+				// Add ../ to the include to go up one dir
+				classCode.append("../");
+			}
+		}
+		classCode.append("JNIUtil.h\"");
 		classCode.append("\n");
 		classCode.append("\n");
 
