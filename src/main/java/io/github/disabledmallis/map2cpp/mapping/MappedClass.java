@@ -2,6 +2,7 @@ package io.github.disabledmallis.map2cpp.mapping;
 
 import java.util.ArrayList;
 
+import io.github.disabledmallis.map2cpp.JavaType;
 import io.github.disabledmallis.map2cpp.Main;
 
 public class MappedClass extends Mapping {
@@ -22,16 +23,21 @@ public class MappedClass extends Mapping {
 		fields.add(field);
 	}
 
+	public JavaType asMappedType() {
+		return new JavaType("L"+this.getMapped()+";");
+	}
+
 	// toString should output generated C++ code for the class
 	public String toString() {
 		StringBuilder classCode = new StringBuilder();
 
 		/* Header guarding uwu */
+		String guardName = "GUARD_"+this.getPackageless();
 		classCode.append("#ifndef ");
-		classCode.append(this.getPackageless());
+		classCode.append(guardName);
 		classCode.append("\n");
 		classCode.append("#define ");
-		classCode.append(this.getPackageless());
+		classCode.append(guardName);
 		classCode.append("\n");
 
 		//Include required files
@@ -68,6 +74,8 @@ public class MappedClass extends Mapping {
 		//Close header guard
 		classCode.append("\n");
 		classCode.append("#endif");
+		classCode.append(" //");
+		classCode.append(guardName);
 		classCode.append("\n");
 
 

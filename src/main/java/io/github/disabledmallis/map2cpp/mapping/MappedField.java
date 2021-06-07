@@ -2,14 +2,17 @@ package io.github.disabledmallis.map2cpp.mapping;
 
 import io.github.disabledmallis.map2cpp.JNIHelper;
 import io.github.disabledmallis.map2cpp.JavaType;
+import io.github.disabledmallis.map2cpp.mapping.MappedClass;
 
 public class MappedField extends Mapping {
 
 	JavaType returnType;
+	MappedClass parentClass;
 
-	public MappedField(JavaType returnType, String officialName, String intermediaryName, String mappedName) {
+	public MappedField(MappedClass parentClass, JavaType returnType, String officialName, String intermediaryName, String mappedName) {
 		super(officialName, intermediaryName, mappedName);
 		this.returnType = returnType;
+		this.parentClass = parentClass;
 	}
 
 	@Override

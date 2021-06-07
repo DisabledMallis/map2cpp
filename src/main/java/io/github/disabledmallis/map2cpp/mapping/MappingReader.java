@@ -70,7 +70,7 @@ public class MappingReader {
 						return;
 					}
 					String typeStr = namedFieldDef[0].getDescriptor("named");
-					MappedField mField = new MappedField(new JavaType(typeStr), f.getName("official"), f.getName("intermediary"), namedFieldDef[0].getName("named"));
+					MappedField mField = new MappedField(mappedClass, new JavaType(typeStr), f.getName("official"), f.getName("intermediary"), namedFieldDef[0].getName("named"));
 					mappedClass.addField(mField);
 					Logger.Log("Class "+name+" added field "+mField.getMapped());
 				});

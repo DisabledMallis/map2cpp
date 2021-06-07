@@ -29,6 +29,9 @@ public class JavaType {
 		public char getRepMap() {
 			return (""+this.cRep).toUpperCase().charAt(0);
 		}
+		public boolean equals(Primitives other) {
+			return this.getRep()==other.getRep();
+		}
 	}
 
 	//Primitive types represented as JavaTypes
@@ -69,6 +72,29 @@ public class JavaType {
 		if(primF.equals(Primitives.jobject)) {
 			classPath = new MappingString(fromMapped.substring(1, fromMapped.length()-1));
 		}
+	}
+
+	public boolean isArray() {
+		return this.isArray;
+	}
+	public Primitives getPrimitiveForm() {
+		return this.primitiveForm;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if(other instanceof JavaType) {
+			JavaType otherType = (JavaType) other;
+			if(this.getPrimitiveForm().equals(Primitives.jobject)) {
+				return this.isArray() == otherType.isArray() && this.getClasspath().equals(otherType.getClasspath());
+			}
+			else {
+				if(this.getPrimitiveForm().equals(otherType.getPrimitiveForm())) {
+					return this.isArray() == otherType.isArray();
+				}
+			}
+		}
+		return super.equals(other);
 	}
 
 	//Returns the classpath, must be an Object to work, otherwise its null.
